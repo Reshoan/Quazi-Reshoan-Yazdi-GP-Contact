@@ -1,22 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>Quazi Reshoan Yazdi - Contact</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-    h1 { color: #333; }
-    button { background-color: #4CAF50; color: white; padding: 15px 25px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; }
-    button:hover { background-color: #45a049; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quazi Reshoan Yazdi | Contact</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #0a74b9, #002b5c);
+    color: #fff;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  h1 { margin-bottom: 5px; font-size: 1.8em; }
+  p { margin-top: 0; font-size: 1em; color: #dce7f3; }
+  button {
+    background: #fff;
+    color: #002b5c;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 28px;
+    margin-top: 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  button:hover {
+    background: #e8f1ff;
+    transform: scale(1.05);
+  }
+  a {
+    color: #aee2ff;
+    text-decoration: none;
+  }
+  footer {
+    margin-top: 40px;
+    font-size: 0.8em;
+    color: #b0cbe4;
+  }
+</style>
 </head>
 <body>
   <h1>Quazi Reshoan Yazdi</h1>
-  <p>Click below to add my contact to your phone:</p>
-  <a href="contact.vcf" download>
-    <button>Add to Contacts</button>
-  </a>
-  <p>After downloading the contact.vcf file, click "open" to import it or find it in your downloads in your files app to import at your nearest convenience. Thank you.</p>
+  <p>ESSP Team, Core Telco IT Department<br>Information Technology Division, Grameenphone Ltd.</p>
+  <p>📍 Dhaka, Bangladesh</p>
+  <p>📧 <a href="mailto:quazi.nt@grameenphone.com">quazi.nt@grameenphone.com</a></p>
+  <p>🔗 <a href="https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207" target="_blank">LinkedIn Profile</a></p>
+
+  <button onclick="downloadVCF()">💾 Save to Contacts</button>
+
+  <footer>
+    © 2025 Quazi Reshoan Yazdi
+  </footer>
+
+  <script>
+    function downloadVCF() {
+      const vcardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Quazi Reshoan Yazdi
+ORG:ESSP Team, Core Telco IT Department, Information Technology Division, Grameenephone Ltd.
+ADR:;;East Wing, L5, GPHouse, Bashundhara, Baridhara, Dhaka-1229, Dhaka, Bangladesh;;;;;
+TEL:+8801300168480
+EMAIL:quazi.nt@grameenphone.com
+URL:https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207
+END:VCARD`;
+
+      const encoded = encodeURIComponent(vcardData);
+      const dataUri = `data:text/vcard;charset=utf-8,${encoded}`;
+      window.location.href = dataUri;
+    }
+  </script>
 </body>
 </html>
