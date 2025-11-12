@@ -55,8 +55,8 @@
   </footer>
 
   <script>
-    function downloadVCF() {
-      const vcardData = `BEGIN:VCARD
+  function downloadVCF() {
+    const vcardData = `BEGIN:VCARD
 VERSION:3.0
 FN:Quazi Reshoan Yazdi
 ORG:ESSP Team, Core Telco IT Department, Information Technology Division, Grameenephone Ltd.
@@ -66,10 +66,16 @@ EMAIL:quazi.nt@grameenphone.com
 URL:https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207
 END:VCARD`;
 
-      const encoded = encodeURIComponent(vcardData);
-      const dataUri = `data:text/vcard;charset=utf-8,${encoded}`;
-      window.location.href = dataUri;
-    }
-  </script>
+    const encoded = encodeURIComponent(vcardData);
+    const dataUri = `data:text/vcard;charset=utf-8,${encoded}`;
+
+    const link = document.createElement('a');
+    link.href = dataUri;
+    link.download = 'Quazi_Reshoan_Yazdi.vcf'; // 👈 Your custom filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+</script>
 </body>
 </html>
