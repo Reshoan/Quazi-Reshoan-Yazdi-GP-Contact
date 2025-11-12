@@ -1,118 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quazi Reshoan Yazdi | Contact</title>
-<style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: linear-gradient(180deg, #0a74b9, #002b5c);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    color: #fff;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 40px 20px;
-  }
-
-  h1 { margin-bottom: 5px; font-size: 1.8em; }
-  p { margin-top: 0; font-size: 1em; color: #dce7f3; }
-
-  button {
-    background: #fff;
-    color: #002b5c;
-    font-weight: bold;
-    border: none;
-    border-radius: 30px;
-    padding: 14px 28px;
-    margin-top: 25px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-  }
-
-  button:hover {
-    background: #e8f1ff;
-    transform: scale(1.05);
-  }
-
-  a {
-    color: #aee2ff;
-    text-decoration: none;
-  }
-
-  footer {
-    margin-top: auto;
-    font-size: 0.8em;
-    color: #b0cbe4;
-    padding-top: 40px;
-  }
-
-  /* 🌙 Dark / Light theme support */
-  @media (prefers-color-scheme: light) {
-    body {
-      background: linear-gradient(180deg, #e0f1ff, #bcdcff);
-      color: #002b5c;
-    }
-    p { color: #123d73; }
-    button {
-      background: #002b5c;
-      color: #fff;
-    }
-    button:hover {
-      background: #004b96;
-    }
-    a { color: #004b96; }
-    footer { color: #27496d; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quazi Reshoan Yazdi - Contact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>Quazi Reshoan Yazdi</h1>
-  <p>ESSP Team, Core Telco IT Department<br>Information Technology Division, Grameenphone Ltd.</p>
-  <p>📍 Dhaka, Bangladesh</p>
-  <p>📧 <a href="mailto:quazi.nt@grameenphone.com">quazi.nt@grameenphone.com</a></p>
-  <p>🔗 <a href="https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207" target="_blank">LinkedIn Profile</a></p>
+<body class="h-full bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300 dark:from-gray-900 dark:via-gray-950 dark:to-black flex flex-col justify-between items-center text-center text-gray-800 dark:text-gray-100">
 
-  <button onclick="downloadVCF()">💾 Save to Contacts</button>
+  <!-- Main Content -->
+  <main class="flex-grow flex flex-col justify-center items-center px-6 py-8">
+    <h1 class="text-3xl font-semibold mb-4">Quazi Reshoan Yazdi</h1>
+    <p class="mb-6 text-lg">ESSP Team, Core Telco IT Department<br>Information Technology Division, Grameenphone Ltd.</p>
+    <a href="Quazi_Reshoan_Yazdi.vcf" download="Quazi_Reshoan_Yazdi.vcf" 
+       class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-xl shadow-md transition-all duration-200">
+      📇 Download Contact Card
+    </a>
+  </main>
 
-  <footer>
+  <!-- Footer -->
+  <footer class="py-4 text-sm opacity-80">
     © 2025 Quazi Reshoan Yazdi
   </footer>
 
+  <!-- Dark/Light Mode Toggle (optional for testing) -->
   <script>
-    function downloadVCF() {
-      const vcardData = `BEGIN:VCARD
-VERSION:3.0
-FN:Quazi Reshoan Yazdi
-ORG:ESSP Team, Core Telco IT Department, Information Technology Division, Grameenephone Ltd.
-ADR:;;East Wing, L5, GPHouse, Bashundhara, Baridhara, Dhaka-1229, Dhaka, Bangladesh;;;;;
-TEL:+8801300168480
-EMAIL:quazi.nt@grameenphone.com
-URL:https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207
-END:VCARD`;
-
-      const encoded = encodeURIComponent(vcardData);
-      const dataUri = `data:text/vcard;charset=utf-8,${encoded}`;
-
-      const link = document.createElement('a');
-      link.href = dataUri;
-      link.download = 'Quazi_Reshoan_Yazdi.vcf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    // Auto-detect system theme
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
     }
   </script>
+
 </body>
 </html>
