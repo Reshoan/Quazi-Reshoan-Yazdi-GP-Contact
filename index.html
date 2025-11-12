@@ -16,24 +16,30 @@
 
     /* Dark mode colors */
     --dark-bg: linear-gradient(135deg, #0b1e3a, #001933);
-    --dark-text: #f0f5ff;
-    --dark-subtext: #cfd9e8;
-    --dark-link: #8ecaff;
-    --dark-btn-bg: #1976d2;
+    --dark-text: #ffffff; /* brighter white for contrast */
+    --dark-subtext: #c0d6ff; /* lighter for better readability */
+    --dark-link: #7ec0ff; /* slightly brighter blue */
+    --dark-btn-bg: #2196f3; /* brighter button */
     --dark-btn-text: #ffffff;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
   }
 
   body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     background: var(--light-bg);
     color: var(--light-text);
-    text-align: center;
-    padding: 60px 20px;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
     transition: background 0.6s ease, color 0.6s ease;
+    overflow: hidden; /* prevent scrolling */
   }
 
   @media (prefers-color-scheme: dark) {
@@ -48,24 +54,24 @@
       color: var(--dark-btn-text);
     }
     button:hover {
-      background: #2196f3;
+      background: #42a5f5;
     }
-    footer { color: #c3d6f2; }
+    footer { color: #c0d6ff; }
   }
 
   img {
-    width: 120px;
-    height: 120px;
+    width: 180px; /* bigger photo */
+    height: 180px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
     border: 3px solid rgba(255,255,255,0.9);
   }
 
   h1 {
     margin-bottom: 5px;
-    font-size: 1.8em;
+    font-size: 2em;
   }
 
   p {
@@ -81,7 +87,7 @@
     border: none;
     border-radius: 30px;
     padding: 14px 28px;
-    margin-top: 25px;
+    margin-top: 20px;
     font-size: 1em;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
@@ -98,17 +104,27 @@
   }
 
   footer {
-    margin-top: 40px;
-    font-size: 0.8em;
+    margin-top: 20px;
+    font-size: 0.9em;
     color: var(--light-subtext);
   }
+
+  /* Ensure all content fits on screen */
+  div {
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
 </style>
 </head>
 <body>
 
   <div>
     <!-- 🖼️ Replace with your actual photo URL -->
-    <img src="Picture.png" alt="Quazi Reshoan Yazdi">
+    <img src="your-photo.jpg" alt="Quazi Reshoan Yazdi">
     
     <h1>Quazi Reshoan Yazdi</h1>
     <p>ESSP Team, Core Telco IT Department<br>
