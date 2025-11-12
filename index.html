@@ -1,34 +1,132 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quazi Reshoan Yazdi - Contact</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="h-full bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300 dark:from-gray-900 dark:via-gray-950 dark:to-black flex flex-col justify-between items-center text-center text-gray-800 dark:text-gray-100">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quazi Reshoan Yazdi | Contact</title>
+<style>
+  :root {
+    --light-bg: linear-gradient(135deg, #ffffff, #dceeff);
+    --dark-bg: linear-gradient(135deg, #0a1a3a, #002b5c);
+    --light-btn-bg: #002b5c;
+    --light-btn-text: #fff;
+    --dark-btn-bg: #aee2ff;
+    --dark-btn-text: #001b3f;
+  }
 
-  <!-- Main Content -->
-  <main class="flex-grow flex flex-col justify-center items-center px-6 py-8">
-    <h1 class="text-3xl font-semibold mb-4">Quazi Reshoan Yazdi</h1>
-    <p class="mb-6 text-lg">ESSP Team, Core Telco IT Department<br>Information Technology Division, Grameenphone Ltd.</p>
-    <a href="Quazi_Reshoan_Yazdi.vcf" download="Quazi_Reshoan_Yazdi.vcf" 
-       class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-xl shadow-md transition-all duration-200">
-      📇 Download Contact Card
-    </a>
-  </main>
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--light-bg);
+    color: #002b5c;
+    text-align: center;
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: background 0.6s ease, color 0.6s ease;
+  }
 
-  <!-- Footer -->
-  <footer class="py-4 text-sm opacity-80">
-    © 2025 Quazi Reshoan Yazdi
-  </footer>
-
-  <!-- Dark/Light Mode Toggle (optional for testing) -->
-  <script>
-    // Auto-detect system theme
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark');
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: var(--dark-bg);
+      color: #fff;
     }
+    p { color: #c7dcf2; }
+    a { color: #aee2ff; }
+    button {
+      background: var(--dark-btn-bg);
+      color: var(--dark-btn-text);
+    }
+    button:hover {
+      background: #d2ecff;
+    }
+    footer { color: #a7c6e8; }
+  }
+
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border: 3px solid rgba(255,255,255,0.8);
+  }
+
+  h1 { margin-bottom: 5px; font-size: 1.8em; }
+  p { margin-top: 0; font-size: 1em; color: #003a70; }
+
+  button {
+    background: var(--light-btn-bg);
+    color: var(--light-btn-text);
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 28px;
+    margin-top: 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  button:hover {
+    background: #004d99;
+    transform: scale(1.05);
+  }
+
+  a {
+    color: #0055aa;
+    text-decoration: none;
+  }
+
+  footer {
+    margin-top: 40px;
+    font-size: 0.8em;
+    color: #003a70;
+  }
+</style>
+</head>
+<body>
+
+  <div>
+    <!-- 🖼️ Replace with your actual photo URL -->
+    <img src="your-photo.jpg" alt="Quazi Reshoan Yazdi">
+    
+    <h1>Quazi Reshoan Yazdi</h1>
+    <p>ESSP Team, Core Telco IT Department<br>
+       Information Technology Division, Grameenphone Ltd.</p>
+    <p>📍 Dhaka, Bangladesh</p>
+    <p>📧 <a href="mailto:quazi.nt@grameenphone.com">quazi.nt@grameenphone.com</a></p>
+    <p>🔗 <a href="https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207" target="_blank">LinkedIn Profile</a></p>
+
+    <button onclick="downloadVCF()">💾 Save to Contacts</button>
+  </div>
+
+  <footer>© 2025 Quazi Reshoan Yazdi</footer>
+
+  <script>
+  function downloadVCF() {
+    const vcardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Quazi Reshoan Yazdi
+ORG:ESSP Team, Core Telco IT Department, Information Technology Division, Grameenephone Ltd.
+ADR:;;East Wing, L5, GPHouse, Bashundhara, Baridhara, Dhaka-1229, Dhaka, Bangladesh;;;;;
+TEL:+8801300168480
+EMAIL:quazi.nt@grameenphone.com
+URL:https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207
+END:VCARD`;
+
+    const encoded = encodeURIComponent(vcardData);
+    const dataUri = `data:text/vcard;charset=utf-8,${encoded}`;
+
+    const link = document.createElement('a');
+    link.href = dataUri;
+    link.download = 'Quazi_Reshoan_Yazdi_GP_Contact.vcf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   </script>
 
 </body>
