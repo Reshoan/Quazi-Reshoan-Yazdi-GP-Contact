@@ -4,28 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quazi Reshoan Yazdi | Contact</title>
-
-<!-- Early inline theme init to avoid flash: set initial html[data-theme] from saved preference or system -->
-<script>
-(function(){
-  try {
-    var storageKey = 'qrThemePreference';
-    var saved = localStorage.getItem(storageKey);
-    if (saved === 'dark' || saved === 'light') {
-      document.documentElement.setAttribute('data-theme', saved);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      // Set initial attribute to match system for first paint (will be respected until JS runs further)
-      document.documentElement.setAttribute('data-theme', 'dark');
-      // We do not persist this value; later runtime logic will remove the attribute if we want to fall back to system.
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-  } catch (e) {
-    // ignore — fail safe to CSS-only behavior
-  }
-})();
-</script>
-
 <style>
   :root {
     /* Original palette kept as named sets */
