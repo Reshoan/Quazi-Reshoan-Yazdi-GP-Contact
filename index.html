@@ -9,7 +9,7 @@
   :root {
     /* Light mode */
     --light-bg: linear-gradient(135deg, #ffffff, #d9ebff);
-    --light-card-bg: rgba(255, 255, 255, 0.42);
+    --light-card-bg: rgba(255, 255, 255, 0.18);
     --light-text: #002b5c;
     --light-subtext: #004080;
     --light-link: #0055aa;
@@ -20,14 +20,14 @@
 
     /* Dark mode */
     --dark-bg: linear-gradient(135deg, #071426, #00101d);
-    --dark-card-bg: rgba(0, 15, 35, 0.26);
+    --dark-card-bg: rgba(10, 20, 40, 0.18);
     --dark-text: #dff6ff;
     --dark-subtext: #edfaff;
     --dark-link: #bfeaff;
     --dark-btn-bg: #34b8ff;
     --dark-btn-text: #00111f;
     --dark-image-border: #62caff;
-    --dark-glow: rgba(52, 184, 255, 0.35);
+    --dark-glow: rgba(52, 184, 255, 0.25);
   }
 
   html, body {
@@ -40,7 +40,7 @@
     align-items: center;
     justify-content: center;
     padding: 25px;
-    transition: color 0.5s ease;
+    transition: color 0.5s ease, background 0.5s ease;
     overflow-x: hidden;
     position: relative;
     background: var(--light-bg);
@@ -51,7 +51,7 @@
   body.dark p { color: var(--dark-subtext); }
   body.dark footer { color: var(--dark-subtext); }
 
-  /* Full-screen animated glow */
+  /* Full-screen glow behind card */
   .glow-background {
     position: fixed;
     top:0; left:0; width:100%; height:100%;
@@ -59,18 +59,11 @@
     pointer-events: none;
     background: radial-gradient(circle at center, var(--light-glow) 0%, transparent 70%);
     filter: blur(120px);
-    animation: glowPulse 6s ease-in-out infinite alternate;
     transition: background 0.5s ease;
   }
 
   body.dark .glow-background {
     background: radial-gradient(circle at center, var(--dark-glow) 0%, transparent 70%);
-  }
-
-  @keyframes glowPulse {
-    0% { transform: scale(1); opacity: 0.85; }
-    50% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.85; }
   }
 
   /* Toggle Section */
@@ -115,13 +108,12 @@
   .card {
     position: relative;
     background: var(--light-card-bg);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     border-radius: 30px;
     padding: 32px;
     width: 70%;
     max-width: 440px;
-    border: 1px solid rgba(255,255,255,0.25);
     animation: fadeSlide 1s ease, floatCard 6s ease-in-out infinite;
     transition: background 0.5s ease;
     z-index: 1;
@@ -183,6 +175,7 @@
     .card { width: 95%; padding: 24px; }
     .profile-pic { width: 120px; height: 120px; }
   }
+
 </style>
 </head>
 
