@@ -16,6 +16,7 @@
     --light-btn-bg: #002b5c;
     --light-btn-text: #ffffff;
     --light-image-border: #cfe4ff;
+    --light-glow: rgba(0, 85, 170, 0.3);
 
     /* Dark mode */
     --dark-bg: linear-gradient(135deg, #071426, #00101d);
@@ -26,6 +27,7 @@
     --dark-btn-bg: #34b8ff;
     --dark-btn-text: #00111f;
     --dark-image-border: #62caff;
+    --dark-glow: rgba(52, 184, 255, 0.4);
   }
 
   html, body {
@@ -42,7 +44,7 @@
     position: relative;
   }
 
-  /* Background pseudo-element for consistent gradient */
+  /* Background gradient always consistent */
   body::before {
     content: '';
     position: fixed;
@@ -102,7 +104,7 @@
   body.dark .toggle { background: #3dc0ff; }
   body.dark .toggle-icon { transform: translateX(36px); }
 
-  /* Card - Glassmorphism + Floating + Animation */
+  /* Card - Glassmorphism + Floating + Glow + Animation */
   .card {
     background: var(--light-card-bg);
     backdrop-filter: blur(18px);
@@ -111,9 +113,15 @@
     padding: 32px;
     width: 93%;
     max-width: 440px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
     border: 1px solid rgba(255,255,255,0.25);
     animation: fadeSlide 1s ease, floatCard 6s ease-in-out infinite;
+    box-shadow: 0 0 25px var(--light-glow);
+    transition: box-shadow 0.5s ease, background 0.5s ease;
+  }
+
+  body.dark .card {
+    background: var(--dark-card-bg);
+    box-shadow: 0 0 30px var(--dark-glow);
   }
 
   @keyframes fadeSlide {
@@ -127,11 +135,7 @@
     100% { transform: translateY(0); }
   }
 
-  .image-container {
-    text-align: center;
-    margin-bottom: 16px;
-  }
-
+  .image-container { text-align: center; margin-bottom: 16px; }
   .profile-pic {
     width: 170px;
     height: 170px;
@@ -188,10 +192,8 @@
 
     <h1>Quazi Reshoan Yazdi</h1>
 
-    <p>
-      ESSP Team, Core Telco IT Department<br>
-      Information Technology Division, Grameenphone Ltd.
-    </p>
+    <p>ESSP Team, Core Telco IT Department<br>
+      Information Technology Division, Grameenphone Ltd.</p>
 
     <p>📍 Dhaka, Bangladesh</p>
 
