@@ -95,6 +95,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
+    text-align: center;
   }
 
   img {
@@ -109,14 +110,17 @@
 
   h1 {
     margin-bottom: 15px;
-    font-size: 2em;
+    font-size: 1.8em;
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
   }
 
   p {
     margin: 8px 0;
-    font-size: 1em;
+    font-size: 0.95em;
     color: var(--light-subtext);
+    text-align: center;
+    width: 100%;
   }
 
   a {
@@ -124,6 +128,7 @@
     text-decoration: none;
     transition: all 0.3s ease;
     position: relative;
+    text-align: center;
   }
 
   a:hover {
@@ -139,10 +144,11 @@
     border-radius: 30px;
     padding: 14px 28px;
     margin-top: 25px;
-    font-size: 1em;
+    font-size: 0.95em;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
   }
 
   button:hover {
@@ -152,8 +158,10 @@
 
   footer {
     margin-top: 20px;
-    font-size: 0.9em;
+    font-size: 0.85em;
     opacity: 0.8;
+    text-align: center;
+    width: 100%;
   }
 
   /* Dark mode styles */
@@ -204,7 +212,11 @@
     }
     
     h1 {
-      font-size: 1.7em;
+      font-size: 1.6em;
+    }
+    
+    p, a, button {
+      font-size: 0.9em;
     }
   }
 </style>
