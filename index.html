@@ -4,28 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quazi Reshoan Yazdi | Contact</title>
-
 <style>
   :root {
-    /* Light mode */
-    --light-bg: linear-gradient(135deg, #ffffff, #d9ebff);
-    --light-card-bg: rgba(255, 255, 255, 0.78);
+    /* Light mode colors */
+    --light-bg: linear-gradient(135deg, #ffffff, #dceeff);
     --light-text: #002b5c;
     --light-subtext: #004080;
     --light-link: #0055aa;
     --light-btn-bg: #002b5c;
     --light-btn-text: #ffffff;
 
-    /* Dark mode */
-    --dark-bg: linear-gradient(135deg, #071426, #00101d);
-    --dark-card-bg: rgba(0, 15, 35, 0.72);
-    --dark-text: #dff6ff;
-    --dark-subtext: #edfaff;
-    --dark-link: #bfeaff;
-    --dark-btn-bg: #34b8ff;
-    --dark-btn-text: #00111f;
+    /* Dark mode colors – brighter for strong contrast */
+    --dark-bg: linear-gradient(135deg, #071426, #001120);
+    --dark-text: #d8f3ff;       /* bright readable text */
+    --dark-subtext: #e8f7ff;    /* very bright */
+    --dark-link: #aee6ff;       /* bright link */
+    --dark-btn-bg: #3db8ff;     /* bright blue button */
+    --dark-btn-text: #00101f;
   }
 
+  /* Fix gradient: apply to both html + body so it covers entire scroll height */
   html, body {
     height: auto;
     min-height: 100%;
@@ -33,7 +31,6 @@
     background: var(--light-bg);
     background-attachment: fixed;
     background-size: cover;
-    transition: background 0.5s ease, color 0.5s ease;
   }
 
   body {
@@ -42,87 +39,67 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25px;
+    text-align: center;
+    padding: 20px;
+    transition: background 0.6s ease, color 0.6s ease;
   }
 
-  /* Toggle dark-mode when .dark class is added */
-  body.dark {
-    background: var(--dark-bg);
-    color: var(--dark-text);
+  @media (prefers-color-scheme: dark) {
+    html, body {
+      background: var(--dark-bg);
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    body {
+      color: var(--dark-text);
+    }
+    p { color: var(--dark-subtext); }
+    a { color: var(--dark-link); }
+
+    button {
+      background: var(--dark-btn-bg);
+      color: var(--dark-btn-text);
+    }
+    button:hover {
+      background: #66ccff;
+    }
+
+    footer { color: var(--dark-subtext); }
   }
 
-  body.dark a { color: var(--dark-link); }
-  body.dark p { color: var(--dark-subtext); }
-  body.dark footer { color: var(--dark-subtext); }
-
-  body.dark .card {
-    background: var(--dark-card-bg);
-    backdrop-filter: blur(16px);
-  }
-
-  body.dark button {
-    background: var(--dark-btn-bg);
-    color: var(--dark-btn-text);
-  }
-
-  body.dark button:hover {
-    background: #6dd4ff;
-  }
-
-  /* Card style (iOS digital vCard style) */
-  .card {
-    margin-top: 20px;
-    background: var(--light-card-bg);
-    backdrop-filter: blur(16px);
-    padding: 30px;
-    border-radius: 34px;
-    width: 93%;
-    max-width: 440px;
-    box-shadow: 0 15px 45px rgba(0,0,0,0.15);
-    animation: fadeIn 0.7s ease;
-    transition: background 0.4s ease, transform 0.3s ease;
-  }
-
-  .card:hover {
-    transform: translateY(-4px);
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
   }
 
   img {
-    width: 150px;
-    height: 150px;
-    border-radius: 30px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
-  }
-
-  img:hover {
-    transform: scale(1.04);
+    margin-bottom: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    border: 3px solid rgba(255,255,255,0.9);
   }
 
   h1 {
-    margin-bottom: 6px;
-    font-size: 1.9em;
-    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 2em;
   }
 
   p {
-    margin: 6px 0;
+    margin: 5px 0;
     font-size: 1em;
     color: var(--light-subtext);
-    line-height: 1.4;
   }
 
   a {
     color: var(--light-link);
     text-decoration: none;
-    font-weight: 500;
   }
 
   button {
@@ -130,9 +107,9 @@
     color: var(--light-btn-text);
     font-weight: bold;
     border: none;
-    border-radius: 20px;
-    padding: 14px 26px;
-    margin-top: 18px;
+    border-radius: 30px;
+    padding: 14px 28px;
+    margin-top: 20px;
     font-size: 1em;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
@@ -144,82 +121,21 @@
   }
 
   footer {
-    margin-top: 18px;
+    margin-top: 15px;
     font-size: 0.9em;
-    opacity: 0.9;
   }
-
-  /* Toggle Switch */
-  .toggle-container {
-    position: fixed;
-    top: 18px;
-    right: 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    user-select: none;
-  }
-
-  .toggle-label {
-    font-size: 0.9em;
-    font-weight: 600;
-  }
-
-  .toggle {
-    position: relative;
-    width: 48px;
-    height: 26px;
-    background: #ccc;
-    border-radius: 34px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  .toggle:before {
-    content: "";
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    left: 2px;
-    top: 2px;
-    background: white;
-    border-radius: 50%;
-    transition: transform 0.3s;
-  }
-
-  body.dark .toggle {
-    background: #34b8ff;
-  }
-
-  body.dark .toggle:before {
-    transform: translateX(22px);
-  }
-
 </style>
 </head>
-
 <body>
 
-  <!-- Toggle Switch -->
-  <div class="toggle-container">
-    <span class="toggle-label">Dark Mode</span>
-    <div class="toggle" onclick="toggleTheme()"></div>
-  </div>
-
-  <div class="card">
+  <div class="container">
     <img src="Picture.png" alt="Quazi Reshoan Yazdi">
-
+    
     <h1>Quazi Reshoan Yazdi</h1>
-
-    <p>
-      ESSP Team, Core Telco IT Department<br>
-      Information Technology Division, Grameenphone Ltd.
-    </p>
-
+    <p>ESSP Team, Core Telco IT Department<br>
+       Information Technology Division, Grameenphone Ltd.</p>
     <p>📍 Dhaka, Bangladesh</p>
-
     <p>📧 <a href="mailto:quazi.nt@grameenphone.com">quazi.nt@grameenphone.com</a></p>
-
     <p>🔗 <a href="https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207" target="_blank">LinkedIn Profile</a></p>
 
     <button onclick="downloadVCF()">💾 Save to Contacts</button>
@@ -228,40 +144,27 @@
   </div>
 
   <script>
-    /* Manual theme toggle */
-    function toggleTheme() {
-      document.body.classList.toggle("dark");
-      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-    }
-
-    /* Load saved theme */
-    window.onload = () => {
-      const saved = localStorage.getItem("theme");
-      if (saved === "dark") document.body.classList.add("dark");
-    };
-
-    /* Download VCF */
-    function downloadVCF() {
-      const vcardData = `BEGIN:VCARD
+  function downloadVCF() {
+    const vcardData = `BEGIN:VCARD
 VERSION:3.0
 FN:Quazi Reshoan Yazdi
-ORG:ESSP Team, Core Telco IT Department, Information Technology Division, Grameenphone Ltd.
+ORG:ESSP Team, Core Telco IT Department, Information Technology Division, Grameenephone Ltd.
 ADR:;;East Wing, L5, GPHouse, Bashundhara, Baridhara, Dhaka-1229, Dhaka, Bangladesh;;;;;
 TEL:+8801300168480
 EMAIL:quazi.nt@grameenphone.com
 URL:https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207
 END:VCARD`;
 
-      const encoded = encodeURIComponent(vcardData);
-      const dataUri = `data:text/vcard;charset=utf-8,${encoded}`;
+    const encoded = encodeURIComponent(vcardData);
+    const dataUri = `data:text/vcard;charset=utf-8,${encoded}`;
 
-      const link = document.createElement('a');
-      link.href = dataUri;
-      link.download = 'Quazi_Reshoan_Yazdi_GP_Contact.vcf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+    const link = document.createElement('a');
+    link.href = dataUri;
+    link.download = 'Quazi_Reshoan_Yazdi_GP_Contact.vcf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   </script>
 
 </body>
