@@ -349,26 +349,27 @@
 
   <script>
   function downloadVCF() {
-    const vcardData = `BEGIN:VCARD
+  const vcardData = `BEGIN:VCARD
 VERSION:3.0
+N:Yazdi;Quazi Reshoan;;;
 FN:Quazi Reshoan Yazdi
-ORG:ESSP Team, Core Telco IT Department, Information Technology Division, Grameenephone Ltd.
-ADR:;;East Wing, L5, GPHouse, Bashundhara, Baridhara, Dhaka-1229, Dhaka, Bangladesh;;;;;
-TEL:+8801300168480
-EMAIL:quazi.nt@grameenphone.com
+ORG:ESSP Team;Core Telco IT Department;Information Technology Division;Grameenphone Ltd.
+ADR;TYPE=WORK:;;East Wing, L5, GPHouse, Bashundhara;Dhaka;;1229;Bangladesh
+TEL;TYPE=CELL:+8801300168480
+EMAIL;TYPE=WORK:quazi.nt@grameenphone.com
 URL:https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207
 END:VCARD`;
 
-    const encoded = encodeURIComponent(vcardData);
-    const dataUri = `data:text/vcard;charset=utf-8,${encoded}`;
+  const encoded = encodeURIComponent(vcardData);
+  const dataUri = `data:text/vcard;charset=utf-8,${encoded}`;
 
-    const link = document.createElement('a');
-    link.href = dataUri;
-    link.download = 'Quazi_Reshoan_Yazdi_GP_Contact.vcf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+  const link = document.createElement('a');
+  link.href = dataUri;
+  link.download = 'Quazi_Reshoan_Yazdi_GP_Contact.vcf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
 
   // Theme toggle logic: default = system preference; user choice persists
   (function() {
