@@ -9,7 +9,7 @@
   :root {
     /* Light mode */
     --light-bg: linear-gradient(135deg, #ffffff, #d9ebff);
-    --light-card-bg: rgba(255, 255, 255, 0.78);
+    --light-card-bg: rgba(255, 255, 255, 0.42);
     --light-text: #002b5c;
     --light-subtext: #004080;
     --light-link: #0055aa;
@@ -19,7 +19,7 @@
 
     /* Dark mode */
     --dark-bg: linear-gradient(135deg, #071426, #00101d);
-    --dark-card-bg: rgba(0, 15, 35, 0.72);
+    --dark-card-bg: rgba(0, 15, 35, 0.26);
     --dark-text: #dff6ff;
     --dark-subtext: #edfaff;
     --dark-link: #bfeaff;
@@ -28,28 +28,23 @@
     --dark-image-border: #62caff;
   }
 
-  /* Ensures gradient covers the ENTIRE page */
+  /* Background always covers full scroll */
   html, body {
     min-height: 100vh;
-    height: auto;
     margin: 0;
     background: var(--light-bg);
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    transition: background 0.5s ease, color 0.5s ease;
-  }
-
-  body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
     color: var(--light-text);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    transition: background 0.5s ease, color 0.5s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 25px;
   }
 
-  /* DARK MODE */
   body.dark {
     background: var(--dark-bg);
     color: var(--dark-text);
@@ -64,86 +59,97 @@
     color: var(--dark-btn-text);
   }
   body.dark .profile-pic {
-    border: 5px solid var(--dark-image-border);
+    border: 4px solid var(--dark-image-border);
   }
 
-  /* Theme Toggle Area */
+  /* Toggle Section */
   .toggle-section {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
     font-weight: bold;
-    font-size: 1.1em;
-    color: inherit;
+    font-size: 1.15em;
   }
 
   .toggle {
-    width: 56px;
-    height: 30px;
-    background: #ccc;
-    border-radius: 30px;
-    cursor: pointer;
+    width: 68px;
+    height: 32px;
+    background: #cfd4dd;
+    border-radius: 40px;
     position: relative;
+    cursor: pointer;
     transition: background 0.3s;
   }
 
-  .toggle::before {
-    content: "";
+  .toggle-icon {
     position: absolute;
     width: 26px;
     height: 26px;
-    top: 2px;
-    left: 2px;
+    top: 3px;
+    left: 3px;
     background: white;
     border-radius: 50%;
-    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: transform 0.35s ease;
   }
 
   body.dark .toggle { background: #3dc0ff; }
-  body.dark .toggle::before { transform: translateX(26px); }
 
-  /* Card */
-  .card {
-    margin-top: 20px;
-    background: var(--light-card-bg);
-    backdrop-filter: blur(18px);
-    padding: 30px;
-    border-radius: 34px;
-    width: 93%;
-    max-width: 440px;
-    box-shadow: 0 15px 45px rgba(0,0,0,0.15);
-    animation: fadeIn 0.7s ease;
+  body.dark .toggle-icon {
+    transform: translateX(36px);
   }
 
-  /* Center the image */
+  /* Card - Glassmorphism + Floating + Animation */
+  .card {
+    background: var(--light-card-bg);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 30px;
+    padding: 32px;
+    width: 93%;
+    max-width: 440px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.25);
+
+    animation: fadeSlide 1s ease, floatCard 6s ease-in-out infinite;
+  }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes floatCard {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* Center image */
   .image-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 12px;
-    margin-bottom: 12px;
+    text-align: center;
+    margin-bottom: 16px;
   }
 
   .profile-pic {
     width: 170px;
     height: 170px;
-    border-radius: 28px;
+    border-radius: 26px;
     object-fit: cover;
+    border: 4px solid var(--light-image-border);
     box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-    border: 5px solid var(--light-image-border);
     transition: transform 0.3s ease;
   }
 
   .profile-pic:hover { transform: scale(1.04); }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
   h1 {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 8px;
     font-size: 1.9em;
     font-weight: 700;
@@ -158,9 +164,17 @@
   }
 
   a {
-    color: var(--light-link);
     text-decoration: none;
+    color: var(--light-link);
     font-weight: 500;
+  }
+
+  /* Icons beside text */
+  .icon-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
   }
 
   button {
@@ -173,13 +187,11 @@
     margin-top: 18px;
     font-size: 1em;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
     width: 100%;
+    transition: transform 0.2s;
   }
 
-  button:hover {
-    transform: scale(1.05);
-  }
+  button:hover { transform: scale(1.05); }
 
   footer {
     margin-top: 20px;
@@ -192,15 +204,16 @@
 
 <body>
 
-  <!-- Theme toggle ABOVE card -->
+  <!-- Toggle ABOVE card -->
   <div class="toggle-section">
     Theme:
-    <div class="toggle" onclick="toggleTheme()"></div>
+    <div class="toggle" onclick="toggleTheme()">
+      <div class="toggle-icon" id="toggleIcon">☀️</div>
+    </div>
   </div>
 
   <div class="card">
 
-    <!-- Centered Image -->
     <div class="image-container">
       <img src="Picture.png" class="profile-pic" alt="Quazi Reshoan Yazdi">
     </div>
@@ -214,9 +227,17 @@
 
     <p>📍 Dhaka, Bangladesh</p>
 
-    <p>📧 <a href="mailto:quazi.nt@grameenphone.com">quazi.nt@grameenphone.com</a></p>
+    <p class="icon-text">📧 
+      <a href="mailto:quazi.nt@grameenphone.com">
+        quazi.nt@grameenphone.com
+      </a>
+    </p>
 
-    <p>🔗 <a href="https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207" target="_blank">LinkedIn Profile</a></p>
+    <p class="icon-text">📞 +8801300168480</p>
+
+    <p class="icon-text">
+      🔗 <a href="https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207" target="_blank">LinkedIn Profile</a>
+    </p>
 
     <button onclick="downloadVCF()">💾 Save to Contacts</button>
 
@@ -224,31 +245,35 @@
   </div>
 
 <script>
-  /* Load theme: system default unless user changed it */
+  /* Load theme on startup */
   function applyStartupTheme() {
     const saved = localStorage.getItem("theme");
+
     if (saved) {
       document.body.classList.toggle("dark", saved === "dark");
+      document.getElementById("toggleIcon").textContent = saved === "dark" ? "🌙" : "☀️";
       return;
     }
+
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     document.body.classList.toggle("dark", prefersDark);
+    document.getElementById("toggleIcon").textContent = prefersDark ? "🌙" : "☀️";
   }
 
   function toggleTheme() {
     const isDark = document.body.classList.toggle("dark");
+
+    document.getElementById("toggleIcon").textContent = isDark ? "🌙" : "☀️";
     localStorage.setItem("theme", isDark ? "dark" : "light");
   }
 
   applyStartupTheme();
 
-  /* VCF Download */
   function downloadVCF() {
     const vcardData = `BEGIN:VCARD
 VERSION:3.0
 FN:Quazi Reshoan Yazdi
-ORG:ESSP Team, Core Telco IT Department, Information Technology Division, Grameenphone Ltd.
-ADR:;;East Wing, L5, GPHouse, Bashundhara, Baridhara, Dhaka-1229, Dhaka, Bangladesh;;;;;
+ORG:Grameenphone Ltd.
 TEL:+8801300168480
 EMAIL:quazi.nt@grameenphone.com
 URL:https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207
