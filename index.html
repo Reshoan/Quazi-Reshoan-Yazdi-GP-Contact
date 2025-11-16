@@ -14,23 +14,27 @@
     --light-btn-bg: #002b5c;
     --light-btn-text: #ffffff;
 
-    /* Dark mode colors */
-    --dark-bg: linear-gradient(135deg, #0b1e3a, #001933);
-    --dark-text: #a0e1ff;       /* light blue for high contrast */
-    --dark-subtext: #c0e6ff;
-    --dark-link: #7ec0ff;
-    --dark-btn-bg: #2196f3;
-    --dark-btn-text: #ffffff;
+    /* Dark mode colors – brighter for strong contrast */
+    --dark-bg: linear-gradient(135deg, #071426, #001120);
+    --dark-text: #d8f3ff;       /* bright readable text */
+    --dark-subtext: #e8f7ff;    /* very bright */
+    --dark-link: #aee6ff;       /* bright link */
+    --dark-btn-bg: #3db8ff;     /* bright blue button */
+    --dark-btn-text: #00101f;
   }
 
+  /* Fix gradient: apply to both html + body so it covers entire scroll height */
   html, body {
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     margin: 0;
+    background: var(--light-bg);
+    background-attachment: fixed;
+    background-size: cover;
   }
 
   body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: var(--light-bg);
     color: var(--light-text);
     display: flex;
     flex-direction: column;
@@ -38,24 +42,29 @@
     text-align: center;
     padding: 20px;
     transition: background 0.6s ease, color 0.6s ease;
-    min-height: 100vh;
-    /* remove justify-content: space-between */
   }
 
   @media (prefers-color-scheme: dark) {
-    body {
+    html, body {
       background: var(--dark-bg);
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    body {
       color: var(--dark-text);
     }
     p { color: var(--dark-subtext); }
     a { color: var(--dark-link); }
+
     button {
       background: var(--dark-btn-bg);
       color: var(--dark-btn-text);
     }
     button:hover {
-      background: #42a5f5;
+      background: #66ccff;
     }
+
     footer { color: var(--dark-subtext); }
   }
 
@@ -63,7 +72,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* photo closer to top */
+    justify-content: flex-start;
     width: 100%;
   }
 
@@ -88,6 +97,11 @@
     color: var(--light-subtext);
   }
 
+  a {
+    color: var(--light-link);
+    text-decoration: none;
+  }
+
   button {
     background: var(--light-btn-bg);
     color: var(--light-btn-text);
@@ -106,22 +120,15 @@
     transform: scale(1.05);
   }
 
-  a {
-    color: var(--light-link);
-    text-decoration: none;
-  }
-
   footer {
-    margin-top: 15px; /* small gap from content */
+    margin-top: 15px;
     font-size: 0.9em;
   }
-
 </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- 🖼️ Replace with your actual photo URL -->
     <img src="Picture.png" alt="Quazi Reshoan Yazdi">
     
     <h1>Quazi Reshoan Yazdi</h1>
@@ -133,7 +140,7 @@
 
     <button onclick="downloadVCF()">💾 Save to Contacts</button>
 
-    <!--<footer>© 2025 Quazi Reshoan Yazdi</footer>-->
+    <footer>© 2025 Quazi Reshoan Yazdi</footer>
   </div>
 
   <script>
