@@ -93,7 +93,7 @@
       color var(--theme-transition-duration) ease;
   }
 
-  /* Glassmorphism Card */
+  /* Glassmorphism Card - Responsive improvements */
   .glass-card {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
@@ -102,7 +102,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 40px 30px;
     max-width: 500px;
-    width: 100%;
+    width: 90%; /* Changed from 100% to 90% for better spacing */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 10;
@@ -112,6 +112,82 @@
       border-color var(--theme-transition-duration) ease,
       box-shadow var(--theme-transition-duration) ease;
     animation: float 6s ease-in-out infinite;
+  }
+
+  /* Responsive adjustments for different screen sizes */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    /* iPad and similar tablets */
+    .glass-card {
+      max-width: 600px; /* Increase max-width for tablets */
+      width: 80%; /* Adjust width for tablets */
+      padding: 50px 40px; /* Increase padding for tablets */
+    }
+    
+    img {
+      width: 180px; /* Slightly larger image for tablets */
+      height: 180px;
+    }
+    
+    h1 {
+      font-size: 1.5em; /* Larger heading for tablets */
+    }
+    
+    p, a {
+      font-size: 0.9em; /* Slightly larger text for tablets */
+    }
+    
+    button {
+      padding: 16px 32px; /* Larger button for tablets */
+      font-size: 1em;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    /* Desktop and larger screens */
+    .glass-card {
+      max-width: 700px; /* Even larger for desktop */
+      width: 70%; /* Adjust width for desktop */
+      padding: 60px 50px; /* More padding for desktop */
+    }
+    
+    img {
+      width: 200px; /* Larger image for desktop */
+      height: 200px;
+    }
+    
+    h1 {
+      font-size: 1.8em; /* Larger heading for desktop */
+    }
+    
+    p, a {
+      font-size: 1em; /* Standard text size for desktop */
+    }
+    
+    button {
+      padding: 18px 36px; /* Larger button for desktop */
+      font-size: 1.1em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Small mobile devices */
+    .glass-card {
+      padding: 30px 20px; /* Reduce padding for small screens */
+      width: 95%; /* Use more of the screen width */
+    }
+    
+    img {
+      width: 140px; /* Slightly smaller image for small screens */
+      height: 140px;
+    }
+    
+    h1 {
+      font-size: 1.2em; /* Smaller heading for small screens */
+    }
+    
+    p, a {
+      font-size: 0.7em; /* Smaller text for small screens */
+    }
   }
 
   /* Glow effect for current theme */
@@ -336,8 +412,6 @@
     html:not([data-theme]) .icon-moon { display: none; }
     html:not([data-theme]) .icon-sun  { display: block; }
   }
-
-  /* remove transform-based helpers; positioning handled above */
 </style>
 </head>
 <body>
