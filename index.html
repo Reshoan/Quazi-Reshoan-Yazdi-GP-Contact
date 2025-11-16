@@ -31,6 +31,9 @@
     --btn-bg: var(--light-btn-bg);
     --btn-text: var(--light-btn-text);
     --glow: var(--light-glow);
+    
+    /* Transition duration for theme changes */
+    --theme-transition-duration: 0.45s;
   }
 
   /* If system prefers dark, set the active variables to dark by default */
@@ -79,12 +82,15 @@
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
+    transition: background var(--theme-transition-duration) ease;
   }
 
   body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     color: var(--text);
-    transition: background 0.45s ease, color 0.45s ease;
+    transition: 
+      background var(--theme-transition-duration) ease, 
+      color var(--theme-transition-duration) ease;
   }
 
   /* Glassmorphism Card */
@@ -100,7 +106,11 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 10;
-    transition: all 0.5s ease;
+    transition: 
+      all 0.5s ease,
+      background var(--theme-transition-duration) ease,
+      border-color var(--theme-transition-duration) ease,
+      box-shadow var(--theme-transition-duration) ease;
     animation: float 6s ease-in-out infinite;
   }
 
@@ -117,7 +127,10 @@
     z-index: -1;
     filter: blur(20px);
     opacity: 0.7;
-    transition: all 0.5s ease;
+    transition: 
+      all 0.5s ease,
+      background var(--theme-transition-duration) ease,
+      opacity var(--theme-transition-duration) ease;
   }
 
   /* Floating animation */
@@ -147,6 +160,7 @@
     margin-bottom: 1px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     border: 3px solid rgba(255,255,255,0.9);
+    transition: box-shadow var(--theme-transition-duration) ease;
   }
 
   h1 {
@@ -154,20 +168,24 @@
     font-size: 1.3em;
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: center;
+    transition: color var(--theme-transition-duration) ease;
   }
 
   p {
-    margin: 8px 0;
+    margin: 5px 0;
     font-size: 0.75em;
     color: var(--subtext);
     text-align: center;
     width: 100%;
+    transition: color var(--theme-transition-duration) ease;
   }
 
   a {
     color: var(--link);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: 
+      all 0.3s ease,
+      color var(--theme-transition-duration) ease;
     position: relative;
     text-align: center;
   }
@@ -184,10 +202,13 @@
     border: none;
     border-radius: 30px;
     padding: 14px 28px;
-    margin-top: 1px;
+    margin-top: 5px;
     font-size: 0.95em;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    transition: 
+      background var(--theme-transition-duration) ease, 
+      color var(--theme-transition-duration) ease,
+      transform 0.2s;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     text-align: center;
   }
@@ -203,9 +224,8 @@
     text-align: center;
     width: 100%;
     color: var(--subtext);
+    transition: color var(--theme-transition-duration) ease;
   }
-
-  /* Dark mode styles for fallback older rules removed – variables drive the look now */
 
   /* Theme toggle (top-right corner inside card) */
   .theme-toggle {
@@ -222,7 +242,10 @@
     padding: 4px;
     cursor: pointer;
     border: 1px solid rgba(255,255,255,0.12);
-    transition: background 0.25s ease, transform 0.15s ease;
+    transition: 
+      background var(--theme-transition-duration) ease, 
+      transform 0.15s ease,
+      border-color var(--theme-transition-duration) ease;
     user-select: none;
     backdrop-filter: blur(6px);
   }
@@ -243,7 +266,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: left 0.28s cubic-bezier(.2,.9,.2,1), background 0.28s;
+    transition: 
+      left 0.28s cubic-bezier(.2,.9,.2,1), 
+      background var(--theme-transition-duration) ease,
+      box-shadow var(--theme-transition-duration) ease;
   }
 
   /* Visual for explicit dark theme: knob on left */
@@ -289,6 +315,7 @@
     display: block;
     opacity: 0.95;
     pointer-events: none;
+    transition: opacity var(--theme-transition-duration) ease;
   }
 
   /* show sun/moon depending on theme (and system preference when no explicit choice) */
@@ -338,6 +365,7 @@
       <p>ESSP Team, Core Telco IT Department<br>
          Information Technology Division, Grameenphone Ltd.</p>
       <p>📍 Dhaka, Bangladesh</p>
+      <p>📱 +8801300168480</p>
       <p>📧 <a href="mailto:quazi.nt@grameenphone.com">quazi.nt@grameenphone.com</a></p>
       <p>🔗 <a href="https://www.linkedin.com/in/quazi-reshoan-yazdi-dhaka1207" target="_blank">LinkedIn Profile</a></p>
 
