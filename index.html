@@ -6,7 +6,7 @@
 <title>Quazi Reshoan Yazdi | Contact</title>
 <style>
   :root {
-    /* Light mode colors */
+    /* Original palette kept as named sets */
     --light-bg: linear-gradient(135deg, #ffffff, #dceeff);
     --light-text: #002b5c;
     --light-subtext: #004080;
@@ -15,14 +15,55 @@
     --light-btn-text: #ffffff;
     --light-glow: rgba(0, 85, 170, 0.3);
 
-    /* Dark mode colors – brighter for strong contrast */
     --dark-bg: linear-gradient(135deg, #071426, #001120);
-    --dark-text: #d8f3ff;       /* bright readable text */
-    --dark-subtext: #e8f7ff;    /* very bright */
-    --dark-link: #aee6ff;       /* bright link */
-    --dark-btn-bg: #3db8ff;     /* bright blue button */
+    --dark-text: #d8f3ff;
+    --dark-subtext: #e8f7ff;
+    --dark-link: #aee6ff;
+    --dark-btn-bg: #3db8ff;
     --dark-btn-text: #00101f;
     --dark-glow: rgba(61, 184, 255, 0.4);
+
+    /* Active variables used by the page (defaults to light set) */
+    --bg: var(--light-bg);
+    --text: var(--light-text);
+    --subtext: var(--light-subtext);
+    --link: var(--light-link);
+    --btn-bg: var(--light-btn-bg);
+    --btn-text: var(--light-btn-text);
+    --glow: var(--light-glow);
+  }
+
+  /* If system prefers dark, set the active variables to dark by default */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: var(--dark-bg);
+      --text: var(--dark-text);
+      --subtext: var(--dark-subtext);
+      --link: var(--dark-link);
+      --btn-bg: var(--dark-btn-bg);
+      --btn-text: var(--dark-btn-text);
+      --glow: var(--dark-glow);
+    }
+  }
+
+  /* Explicit user override via data-theme on <html> */
+  html[data-theme="dark"] {
+    --bg: var(--dark-bg);
+    --text: var(--dark-text);
+    --subtext: var(--dark-subtext);
+    --link: var(--dark-link);
+    --btn-bg: var(--dark-btn-bg);
+    --btn-text: var(--dark-btn-text);
+    --glow: var(--dark-glow);
+  }
+  html[data-theme="light"] {
+    --bg: var(--light-bg);
+    --text: var(--light-text);
+    --subtext: var(--light-subtext);
+    --link: var(--light-link);
+    --btn-bg: var(--light-btn-bg);
+    --btn-text: var(--light-btn-text);
+    --glow: var(--light-glow);
   }
 
   /* Fix gradient: apply to both html + body so it covers entire scroll height */
@@ -30,7 +71,7 @@
     height: auto;
     min-height: 100%;
     margin: 0;
-    background: var(--light-bg);
+    background: var(--bg);
     background-attachment: fixed;
     background-size: cover;
     display: flex;
@@ -42,8 +83,8 @@
 
   body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    color: var(--light-text);
-    transition: background 0.6s ease, color 0.6s ease;
+    color: var(--text);
+    transition: background 0.45s ease, color 0.45s ease;
   }
 
   /* Glassmorphism Card */
@@ -63,7 +104,7 @@
     animation: float 6s ease-in-out infinite;
   }
 
-  /* Glow effect for light mode */
+  /* Glow effect for current theme */
   .glass-card::before {
     content: '';
     position: absolute;
@@ -71,7 +112,7 @@
     left: -10px;
     right: -10px;
     bottom: -10px;
-    background: var(--light-glow);
+    background: var(--glow);
     border-radius: 30px;
     z-index: -1;
     filter: blur(20px);
@@ -118,13 +159,13 @@
   p {
     margin: 8px 0;
     font-size: 0.95em;
-    color: var(--light-subtext);
+    color: var(--subtext);
     text-align: center;
     width: 100%;
   }
 
   a {
-    color: var(--light-link);
+    color: var(--link);
     text-decoration: none;
     transition: all 0.3s ease;
     position: relative;
@@ -137,8 +178,8 @@
   }
 
   button {
-    background: var(--light-btn-bg);
-    color: var(--light-btn-text);
+    background: var(--btn-bg);
+    color: var(--btn-text);
     font-weight: bold;
     border: none;
     border-radius: 30px;
@@ -152,7 +193,6 @@
   }
 
   button:hover {
-    background: #004d99;
     transform: scale(1.05);
   }
 
@@ -162,69 +202,136 @@
     opacity: 0.8;
     text-align: center;
     width: 100%;
+    color: var(--subtext);
   }
 
-  /* Dark mode styles */
+  /* Dark mode styles for fallback older rules removed – variables drive the look now */
+
+  /* Theme toggle (top-right corner inside card) */
+  .theme-toggle {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 28px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 4px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: background 0.25s ease, transform 0.15s ease;
+    user-select: none;
+    backdrop-filter: blur(6px);
+  }
+
+  .theme-toggle:active { transform: scale(0.98); }
+
+  /* knob is absolutely positioned inside the pill so left/right stays within bounds */
+  .toggle-knob {
+    position: absolute;
+    top: 4px;
+    /* default: place knob on the right (light mode) */
+    left: calc(100% - 6px - 20px);
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(180deg, #fff, #e6e6e6);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.28s cubic-bezier(.2,.9,.2,1), background 0.28s;
+  }
+
+  /* Visual for explicit dark theme: knob on left */
+  html[data-theme="dark"] .theme-toggle {
+    background: rgba(0,0,0,0.22);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  html[data-theme="dark"] .toggle-knob {
+    left: 6px;
+    background: linear-gradient(180deg,#0f2940,#09202b);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  /* Explicit light theme: knob on right (keeps it inside) */
+  html[data-theme="light"] .toggle-knob {
+    left: calc(100% - 6px - 20px);
+    background: linear-gradient(180deg,#fff,#e6e6e6);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  /* If no explicit theme, respect system preference so the knob is placed accordingly */
   @media (prefers-color-scheme: dark) {
-    html, body {
-      background: var(--dark-bg);
-      background-attachment: fixed;
-      background-size: cover;
+    html:not([data-theme]) .toggle-knob {
+      left: 6px;
+      background: linear-gradient(180deg,#0f2940,#09202b);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
-
-    body {
-      color: var(--dark-text);
-    }
-    
-    .glass-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .glass-card::before {
-      background: var(--dark-glow);
-      opacity: 0.8;
-    }
-    
-    p { color: var(--dark-subtext); }
-    a { color: var(--dark-link); }
-
-    button {
-      background: var(--dark-btn-bg);
-      color: var(--dark-btn-text);
-    }
-    button:hover {
-      background: #66ccff;
-    }
-
-    footer { color: var(--dark-subtext); }
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    .glass-card {
-      padding: 30px 20px;
-    }
-    
-    img {
-      width: 150px;
-      height: 150px;
-    }
-    
-    h1 {
-      font-size: 1.6em;
-    }
-    
-    p, a, button {
-      font-size: 0.9em;
+    html:not([data-theme]) .theme-toggle {
+      background: rgba(0,0,0,0.22);
     }
   }
+  @media (prefers-color-scheme: light) {
+    html:not([data-theme]) .toggle-knob {
+      left: calc(100% - 6px - 20px);
+      background: linear-gradient(180deg,#fff,#e6e6e6);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  }
+
+  .toggle-icon {
+    width: 12px;
+    height: 12px;
+    display: block;
+    opacity: 0.95;
+    pointer-events: none;
+  }
+
+  /* show sun/moon depending on theme (and system preference when no explicit choice) */
+  .icon-moon { display: none; }
+  .icon-sun  { display: block; }
+
+  html[data-theme="dark"] .icon-moon { display: block; }
+  html[data-theme="dark"] .icon-sun  { display: none; }
+
+  html[data-theme="light"] .icon-moon { display: none; }
+  html[data-theme="light"] .icon-sun  { display: block; }
+
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme]) .icon-moon { display: block; }
+    html:not([data-theme]) .icon-sun  { display: none; }
+  }
+  @media (prefers-color-scheme: light) {
+    html:not([data-theme]) .icon-moon { display: none; }
+    html:not([data-theme]) .icon-sun  { display: block; }
+  }
+
+  /* remove transform-based helpers; positioning handled above */
 </style>
 </head>
 <body>
 
   <div class="glass-card">
     <div class="container">
+      <!-- Theme toggle -->
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">
+        <span class="toggle-knob toggle-left" id="toggleKnob" aria-hidden="true">
+          <!-- Sun (light) -->
+          <svg class="toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:#FFB800;">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+          </svg>
+          <!-- Moon (dark) -->
+          <svg class="toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:#9ad4ff;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </span>
+      </button>
+
       <img src="Picture.png" alt="Quazi Reshoan Yazdi">
       
       <h1>Quazi Reshoan Yazdi</h1>
@@ -262,6 +369,75 @@ END:VCARD`;
     link.click();
     document.body.removeChild(link);
   }
+
+  // Theme toggle logic: default = system preference; user choice persists
+  (function() {
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const knob = document.getElementById('toggleKnob');
+    const storageKey = 'qrThemePreference';
+
+    function getSystemPrefersDark() {
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+        toggle.setAttribute('aria-pressed', 'true');
+      } else if (theme === 'light') {
+        root.setAttribute('data-theme', 'light');
+        toggle.setAttribute('aria-pressed', 'false');
+      } else {
+        // Remove explicit attribute to fall back to system preference
+        root.removeAttribute('data-theme');
+        toggle.setAttribute('aria-pressed', String(getSystemPrefersDark()));
+      }
+    }
+
+    // Initialize: check saved preference
+    const saved = localStorage.getItem(storageKey);
+    if (saved === 'dark' || saved === 'light') {
+      applyTheme(saved);
+    } else {
+      applyTheme(null);
+    }
+
+    // Keep toggle icon colors synced visually
+    function updateToggleIcon() {
+      const darkActive = root.getAttribute('data-theme') === 'dark' || (!root.hasAttribute('data-theme') && getSystemPrefersDark());
+      const sun = knob.querySelector('.icon-sun');
+      const moon = knob.querySelector('.icon-moon');
+      if (sun) sun.style.color = '#FFB800';
+      if (moon) moon.style.color = '#9ad4ff';
+      // aria-pressed already set in applyTheme
+    }
+    updateToggleIcon();
+
+    // Clicking toggles explicit preference
+    toggle.addEventListener('click', function() {
+      const currentExplicit = root.getAttribute('data-theme');
+      let newTheme;
+      if (currentExplicit === 'dark') newTheme = 'light';
+      else if (currentExplicit === 'light') newTheme = 'dark';
+      else {
+        newTheme = getSystemPrefersDark() ? 'light' : 'dark';
+      }
+      applyTheme(newTheme);
+      localStorage.setItem(storageKey, newTheme);
+      updateToggleIcon();
+    });
+
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+        const savedNow = localStorage.getItem(storageKey);
+        if (!savedNow) {
+          applyTheme(null);
+          updateToggleIcon();
+        }
+      });
+    }
+  })();
   </script>
 
 </body>
